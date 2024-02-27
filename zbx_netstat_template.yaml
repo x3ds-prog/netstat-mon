@@ -1,0 +1,580 @@
+zabbix_export:
+  version: '6.4'
+  template_groups:
+    - uuid: c6269b3e525940b099eb9f635c9af7af
+      name: IPTV-mon-template-group
+  templates:
+    - uuid: a5aaaaf0eb924c2f8f205a0cfdd8d8b7
+      template: 'Netstat Linux'
+      name: 'Netstat Linux'
+      groups:
+        - name: IPTV-mon-template-group
+      items:
+        - uuid: bd09da9f99ab4259b2f868cb059b79ba
+          name: 'Netstat statistics'
+          key: netstat.anus
+          delay: 10s
+          trends: '0'
+          value_type: TEXT
+        - uuid: 03b1276574c545e5bb244f8f992e0c77
+          name: 'Netstat UDP IgnoredMulti'
+          type: DEPENDENT
+          key: netstat.udp.IgnoredMulti
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Udp.IgnoredMulti
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: e57b3a0ef4934b62a8d4da74773ed348
+          name: 'Netstat UDP packets_received'
+          type: DEPENDENT
+          key: netstat.udp.packets_received
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Udp.packets_received
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 19377624559045c79064a8fc8f5c548f
+          name: 'Netstat UDP packets_sent'
+          type: DEPENDENT
+          key: netstat.udp.packets_sent
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Udp.packets_sent
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: e0cfcb2f03864807929c4c242af4e9b4
+          name: 'Netstat UDP packets_to_unknown_port_received'
+          type: DEPENDENT
+          key: netstat.udp.packets_to_unknown_port_received
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Udp.packets_to_unknown_port_received
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 05994948ed244f0898f3643ddeb81bed
+          name: 'Netstat UDP packet_receive_errors'
+          type: DEPENDENT
+          key: netstat.udp.packet_receive_errors
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Udp.packet_receive_errors
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 203eb72f46894af68c15c5a11bae99b4
+          name: 'Netstat UDP receive_buffer_errors'
+          type: DEPENDENT
+          key: netstat.udp.receive_buffer_errors
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Udp.receive_buffer_errors
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 813f3c6f176f46f484e3b47525ce93ae
+          name: 'Netstat UDP send_buffer_errors'
+          type: DEPENDENT
+          key: netstat.udp.send_buffer_errors
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Udp.send_buffer_errors
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: a45fc30e04764ca6be9d778e9dd19c8b
+          name: 'Netstat TCP: Active connection openings'
+          type: DEPENDENT
+          key: tcp.active_connection_openings
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.active_connection_openings
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: bcbd699e6dc24678885856ac231494a8
+          name: 'Netstat TCP: Bad segments received'
+          type: DEPENDENT
+          key: tcp.bad_segments_received
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.bad_segments_received
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 2f5ab80bde0d41f4a30e9b8c3b23ca78
+          name: 'Netstat TCP: Connections established'
+          type: DEPENDENT
+          key: tcp.connections_established
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.connections_established
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 69ff6c4caf944d7694295fe6aff8cb79
+          name: 'Netstat TCP: Connection resets received'
+          type: DEPENDENT
+          key: tcp.connection_resets_received
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.connection_resets_received
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: f8159c48ee2b4259950fd43d475ac668
+          name: 'Netstat TCP: Failed connection attempts'
+          type: DEPENDENT
+          key: tcp.failed_connection_attempts
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.failed_connection_attempts
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: de18819515914f77af7b790f84021a9c
+          name: 'Netstat TCP: InCsumErrors'
+          type: DEPENDENT
+          key: tcp.InCsumErrors
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.InCsumErrors
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: cb7fcd9119c94a5bb68f4fa3e09797a8
+          name: 'Netstat TCP: Passive connection openings'
+          type: DEPENDENT
+          key: tcp.passive_connection_openings
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.passive_connection_openings
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 247eb2e5c93e432fb84e9542fedcfa47
+          name: 'Netstat TCP: Resets sent'
+          type: DEPENDENT
+          key: tcp.resets_sent
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.resets_sent
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 1456f2d779864ccca52c41fc7fda2473
+          name: 'Netstat TCP: Segments received'
+          type: DEPENDENT
+          key: tcp.segments_received
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.segments_received
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 4d7b99f345ed4ce786a8a779dce8a40d
+          name: 'Netstat TCP: Segments retransmitted'
+          type: DEPENDENT
+          key: tcp.segments_retransmitted
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.segments_retransmitted
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+        - uuid: 6dfe1e2b317848ccbed495eed46d8165
+          name: 'Netstat TCP: Segments sent out'
+          type: DEPENDENT
+          key: tcp.segments_sent_out
+          delay: '0'
+          units: pkts
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.Tcp.segments_sent_out
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          master_item:
+            key: netstat.anus
+      discovery_rules:
+        - uuid: a9950933addc4fa6bebbeb254de5122f
+          name: 'Discover interfaces'
+          type: DEPENDENT
+          key: netstat.interface.discovery
+          delay: '0'
+          item_prototypes:
+            - uuid: ce5922eab0ce4245a173d0e99b9afa32
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} RX-DRP'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-drp'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["RX-DRP"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+            - uuid: 078c6288c09c4fcabc662dd2f46cc9e0
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} RX-ERR'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-err'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["RX-ERR"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+            - uuid: 405a31eb01fe494a88931d4188217cdf
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} RX-OK'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-ok'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["RX-OK"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+            - uuid: 658e5f27d8b6418fb7c36ae40f405b82
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} RX-OVR'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-ovr'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["RX-OVR"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+            - uuid: 78c90ea190c2454b834dfab1fadd4ab3
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} TX-DRP'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-drp'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["TX-DRP"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+            - uuid: 02941d0f0fa94f729b0c39fe3672ad79
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} TX-ERR'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-err'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["TX-ERR"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+            - uuid: 7647922e572f4166b02e777365ef780e
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} TX-OK'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-ok'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["TX-OK"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+            - uuid: 6baf23d804c24695a46792df42a3a4c5
+              name: 'NETSTAT INTERFACE {#NETSTAT_IF_NAME} TX-OVR'
+              type: DEPENDENT
+              key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-ovr'']'
+              delay: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.interfaces.["{#NETSTAT_IF_NAME}"].["TX-OVR"]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: netstat.anus
+          graph_prototypes:
+            - uuid: 57d391507bd94f6fbbac2a9acaf236f0
+              name: '{#NETSTAT_IF_NAME} RX Stats'
+              graph_items:
+                - drawtype: GRADIENT_LINE
+                  color: 199C0D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-drp'']'
+                - sortorder: '1'
+                  drawtype: GRADIENT_LINE
+                  color: F63100
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-err'']'
+                - sortorder: '2'
+                  drawtype: GRADIENT_LINE
+                  color: 2774A4
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-ok'']'
+                - sortorder: '3'
+                  drawtype: GRADIENT_LINE
+                  color: F7941D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''rx-ovr'']'
+            - uuid: 92eca8fba4a94f02a27301c30caed652
+              name: '{#NETSTAT_IF_NAME} TX Stats'
+              graph_items:
+                - drawtype: GRADIENT_LINE
+                  color: 199C0D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-drp'']'
+                - sortorder: '1'
+                  drawtype: GRADIENT_LINE
+                  color: F63100
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-err'']'
+                - sortorder: '2'
+                  drawtype: GRADIENT_LINE
+                  color: 2774A4
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-ok'']'
+                - sortorder: '3'
+                  drawtype: GRADIENT_LINE
+                  color: F7941D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Netstat Linux'
+                    key: 'netstat.if.[{#NETSTAT_IF_NAME},''tx-ovr'']'
+          master_item:
+            key: netstat.anus
+          lld_macro_paths:
+            - lld_macro: '{#NETSTAT_IF_NAME}'
+              path: $.name
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - '$.interfaces.*~'
+            - type: JAVASCRIPT
+              parameters:
+                - |
+                  // Парсим полученную строку JSON в массив
+                    var interfacesArray = JSON.parse(value);
+                  
+                    var jsonData = {
+                      "data": interfacesArray.map(function(name) {
+                        return { "name": name };
+                      })
+                    };
+                  
+                    // Преобразуем объект JSON в строку JSON и возвращаем
+                    return JSON.stringify(jsonData);
+  graphs:
+    - uuid: 05b451138f424fc49932ecade640796b
+      name: 'NetStat TCP'
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: E91E63
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: tcp.bad_segments_received
+        - sortorder: '1'
+          drawtype: GRADIENT_LINE
+          color: D32F2F
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: tcp.failed_connection_attempts
+        - sortorder: '2'
+          drawtype: GRADIENT_LINE
+          color: 00FF00
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: tcp.segments_received
+        - sortorder: '3'
+          drawtype: GRADIENT_LINE
+          color: CC6600
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: tcp.segments_retransmitted
+        - sortorder: '4'
+          drawtype: GRADIENT_LINE
+          color: FF0000
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: tcp.segments_sent_out
+    - uuid: db077aac9fe142f48c55955826712680
+      name: 'NetStat UDP'
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 199C0D
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: netstat.udp.IgnoredMulti
+        - sortorder: '1'
+          drawtype: GRADIENT_LINE
+          color: F63100
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: netstat.udp.packets_received
+        - sortorder: '2'
+          drawtype: GRADIENT_LINE
+          color: 2774A4
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: netstat.udp.packets_sent
+        - sortorder: '3'
+          drawtype: GRADIENT_LINE
+          color: F7941D
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: netstat.udp.packets_to_unknown_port_received
+        - sortorder: '4'
+          drawtype: GRADIENT_LINE
+          color: FC6EA3
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: netstat.udp.packet_receive_errors
+        - sortorder: '5'
+          drawtype: GRADIENT_LINE
+          color: 6C59DC
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: netstat.udp.receive_buffer_errors
+        - sortorder: '6'
+          drawtype: GRADIENT_LINE
+          color: C7A72D
+          calc_fnc: ALL
+          item:
+            host: 'Netstat Linux'
+            key: netstat.udp.send_buffer_errors
